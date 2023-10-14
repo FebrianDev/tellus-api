@@ -1,11 +1,14 @@
-//require module
+//require module library
 const express = require('express')
 const bodyParser = require('body-parser')
-const jwt = require('jsonwebtoken')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
+//require module file
+const {register, verify, login} = require("./routes/auth/auth")
+
+//initialize
 const app = express()
 
 app.use(bodyParser.json())
@@ -18,9 +21,7 @@ app.use(cors({
 
 app.use(cookieParser())
 
-app.use('/api', async (req, res) => {
-    return res.send(200, "OK!")
-})
+app.use('/api', register, verify, login)
 
 module.exports = app
 app.listen(3030)
