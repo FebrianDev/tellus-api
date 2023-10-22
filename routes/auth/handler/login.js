@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
         return res.status(404).json({
             code: 404,
             status: 'error',
-            data: {message: 'user not found'}
+            message: 'user not found'
         })
     }
 
@@ -45,7 +45,7 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({
             code: 400,
             status: 'error',
-            data: {message: 'password wrong!'}
+            message: 'password wrong!'
         })
     }
 
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({
             code: 400,
             status: 'error',
-            data: {message: 'User have not active'}
+            message: 'User have not active'
         })
     }
 
