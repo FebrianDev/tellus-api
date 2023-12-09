@@ -11,7 +11,7 @@ const v = new Validator()
 router.post('/post',  auth, async (req, res) => {
     const schema = {
         message: 'string|empty:false',
-        id_user: 'number|empty:false',
+        id_user: 'string|empty:false',
         tag:'string|empty:false',
         is_private: 'boolean|empty:false',
         token: 'string|empty:false'

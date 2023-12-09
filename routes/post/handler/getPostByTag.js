@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const {Post} = require('../../../models')
+const {Post, Like, Bookmark} = require('../../../models')
 const auth = require('../../../middleware/auth')
 
 router.get('/post/tag/:tag',auth, async (req,res)=>{
@@ -8,6 +8,7 @@ router.get('/post/tag/:tag',auth, async (req,res)=>{
     const tag = req.params.tag
 
     const post = await Post.findAll({
+        include:[Like, Bookmark],
         where:{
             tag:tag
         }

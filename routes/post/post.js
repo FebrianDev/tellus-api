@@ -5,6 +5,7 @@ const getTrendingPost = require('../post/handler/getTrendingPost')
 const getPostByTag = require('../post/handler/getPostByTag')
 const insertPost = require('../post/handler/insertPost')
 const updatePost = require('../post/handler/updatePost')
+const updatePrivatePost = require('../post/handler/updatePrivatePost')
 const deletePost = require('../post/handler/deletePost')
 module.exports = {
     getAllPost,
@@ -14,5 +15,6 @@ module.exports = {
     getPostByTag,
     insertPost,
     updatePost,
+    updatePrivatePost,
     deletePost
 }

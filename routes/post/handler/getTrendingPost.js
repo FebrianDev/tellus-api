@@ -1,14 +1,16 @@
 const express = require('express')
 const router = express.Router();
-const {Post} = require('../../../models')
+const {Post, Like, Bookmark} = require('../../../models')
 const auth = require('../../../middleware/auth')
 
-router.get('/post/trending', auth, async (req, res) => {
+router.get('/post/all/trending', auth, async (req, res) => {
 
     const post = await Post.findAll({
-        order: [['like', 'DESC'], ['comment', 'DESC']],
+        include:[Like, Bookmark],
+        order: [['comment', 'DESC'], ['like', 'DESC']],
         limit: 10
     })
+
     res.json({
         status: 'success',
         code: 200,

@@ -3,21 +3,15 @@ const router = express.Router()
 const {Post} = require("../../../models")
 const auth = require('../../../middleware/auth')
 
-router.put("/post/update/:id", auth, async (req, res) => {
+router.put("/post/:id", auth, async (req, res) => {
 
     const idPost = req.params.id
 
-    const post = req.body
+    const isPrivate = req.body.is_private
 
     const postUpdate = await Post.update(
         {
-            post_message: post.message,
-            id_user: post.id_user,
-            like: post.like,
-            comment: post.comment,
-            is_private: post.is_private,
-            token: post.token,
-            updatedAt: Date.now()
+            is_private: isPrivate
         }, {
             where: {
                 id: idPost

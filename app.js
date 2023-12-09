@@ -15,11 +15,12 @@ const {
     getPostByTag,
     insertPost,
     updatePost,
+    updatePrivatePost,
     deletePost
 } = require('./routes/post/post')
 
 const {
-    getCommentByPost, getReplyComment, insertComment
+    getCommentByPost, getReplyComment, insertComment, insertReplyComment, deleteComment, deleteReplyComment
 } = require('./routes/comment/comment')
 
 const {getAllBookmark, insertBookmark, getBookmarkById} = require('./routes/bookmark/bookmark')
@@ -42,8 +43,8 @@ app.use(cors({
 app.use(cookieParser())
 
 app.use('/api', register, verify, login,
-    getAllPost, getPostById, getPostByIdUser, getTrendingPost, getPostByTag, insertPost, updatePost, deletePost,
-    getCommentByPost, getReplyComment, insertComment,
+    getAllPost, getPostById, getPostByIdUser, getTrendingPost, getPostByTag, insertPost, updatePost, updatePrivatePost, deletePost,
+    getCommentByPost, getReplyComment, insertComment, insertReplyComment, deleteComment, deleteReplyComment,
     getAllBookmark, insertBookmark, getBookmarkById,
     getLikeById, insertLike
 )
