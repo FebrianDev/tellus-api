@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const {Like} = require('../models')
+
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     /**
@@ -11,10 +14,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+     // Post.belongsTo(models.Like, { foreignKey: 'id_user' });
+      Post.hasMany(models.Like, { foreignKey: 'id_user' });
+      Post.hasMany(models.Like, { foreignKey: 'id_post' });
+
+      Post.hasMany(models.Bookmark, { foreignKey: 'id_user' });
+      Post.hasMany(models.Bookmark, { foreignKey: 'id_post' });
     }
   }
+
   Post.init({
-    id_user: DataTypes.INTEGER,
+    id_user: DataTypes.STRING,
     message: DataTypes.STRING,
     like: DataTypes.INTEGER,
     comment: DataTypes.INTEGER,
@@ -25,5 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Post',
   });
+
+
   return Post;
 };

@@ -11,14 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Comment.hasMany(models.ReplyComment, { foreignKey: 'id_reply' });
     }
   }
   Comment.init({
     id_post: DataTypes.INTEGER,
-    id_user: DataTypes.INTEGER,
+    id_user: DataTypes.STRING,
     message: DataTypes.STRING,
-    id_reply: DataTypes.INTEGER,
-    root: DataTypes.BOOLEAN
+    token: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Comment',

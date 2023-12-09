@@ -13,16 +13,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_user: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       message: {
         type: Sequelize.STRING
       },
-      id_reply: {
-        type: Sequelize.INTEGER
-      },
-      root: {
-        type: Sequelize.BOOLEAN
+      token: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
