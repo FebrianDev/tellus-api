@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({
             code: 400,
             status: 'error',
-            message: 'User have not active'
+            message: 'Your account has been not activated!'
         })
     }
 
