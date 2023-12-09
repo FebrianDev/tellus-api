@@ -1,6 +1,6 @@
 const express = require('express')
 const Validator = require('fastest-validator')
-const {Comment, Post} = require('../../../models')
+const {ReplyComment, Post} = require('../../../models')
 
 const auth = require("../../../middleware/auth")
 
@@ -8,35 +8,21 @@ const router = express.Router()
 const v = new Validator()
 
 //Insert Tweet
-router.post('/comment', auth, async (req, res) => {
-    // const schema = {
-    //     id_user: 'number|empty:false',
-    //     id_post:'number|empty:false',
-    //     message: 'string|empty:false',
-    //     root:'boolean|empty:true',
-    //     id_reply:'number|empty:true',
-    //     token:"string|empty:false"
-    // }
-    //
-    // const validate = v.validate(req.body, schema)
-    //
-    // if (validate.length) {
-    //     return res.status(400).json({
-    //         status: 'error',
-    //         message: validate
-    //     })
-    // }
+router.post('/comment/reply', auth, async (req, res) => {
 
     const data = {
         id_user: req.body.id_user,
         id_post: req.body.id_post,
         message: req.body.message,
+        prev_message:req.body.prev_message,
+        is_root: req.body.is_root,
+        id_reply: req.body.id_reply,
         token: req.body.token
     }
 
-    const insertComment = await Comment.create(data)
+    const insertReplyComment = await ReplyComment.create(data)
 
-    if (insertComment) {
+    if (insertReplyComment) {
 
         const post = await Post.findOne({where: {id: req.body.id_post}})
 
@@ -53,7 +39,7 @@ router.post('/comment', auth, async (req, res) => {
                 message: 'success',
                 code: 201,
                 data: {
-                    id: insertComment.id
+                    id: insertReplyComment.id
                 }
             })
         } else {

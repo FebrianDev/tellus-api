@@ -1,21 +1,21 @@
 const express = require('express')
 const router = express.Router()
-const {Comment} = require('../../../models')
+const {ReplyComment} = require('../../../models')
 const auth = require('../../../middleware/auth')
-router.get('/comment/reply/ :id', auth, async (req, res) => {
+router.get('/comment/reply/:id_post/:id_reply', auth, async (req, res) => {
 
-    const idComment = req.params.id
+    const {id_post,id_reply} = req.params
 
-    const comment = await Comment.findAll({
+    const replyComment = await ReplyComment.findAll({
         where: {
-            id: idComment,
-            id_reply: idComment
+            id_post: id_post,
+            id_reply: id_reply,
         }
     })
     res.json({
         status: 'success',
         code: 200,
-        data: comment
+        data: replyComment
     })
 })
 
