@@ -3,12 +3,14 @@ const router = express.Router();
 const {Like} = require('../../../models')
 const auth = require('../../../middleware/auth')
 
-router.get('/like', auth, async (req, res) => {
+router.get('/like/:id_post/:id_user', auth, async (req, res) => {
 
-    const like = await Like.findAll({
+    const {id_post, id_user} = req.params
+
+    const like = await Like.findOne({
         where: {
-            id_user: req.body.id_user,
-            id_post: req.body.id_post
+            id_user: id_user,
+            id_post: id_post
         }
     })
     res.json({

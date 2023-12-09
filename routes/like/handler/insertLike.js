@@ -9,7 +9,7 @@ const v = new Validator()
 
 router.post('/like', auth, async (req, res) => {
     const schema = {
-        id_user: 'number|empty:false',
+        id_user: 'string|empty:false',
         id_post: 'number|empty:false'
     }
 
@@ -27,24 +27,28 @@ router.post('/like', auth, async (req, res) => {
         id_post: req.body.id_post,
     }
 
-    const like = await Post.findOne({where: {id: req.body.id_post}})
+    const post = await Post.findOne({where: {id: req.body.id_post}})
 
     const checkData = await Like.count({where: {id_user: req.body.id_user, id_post: req.body.id_post}})
         .then(count => {
             return (count > 0)
         })
 
+    console.log(checkData)
+
     if (checkData) {
         await Like.destroy({where: {id_user: req.body.id_user, id_post: req.body.id_post}})
 
         const postUpdate = await Post.update(
             {
-                like: like - 1,
+                like: post.like - 1,
             }, {
                 where: {
-                    id: data.id_post
+                    id: req.body.id_post
                 }
             })
+
+        console.log(postUpdate)
 
         if (postUpdate[0] === 1) {
             return res.status(201).json({
@@ -62,13 +66,15 @@ router.post('/like', auth, async (req, res) => {
 
         const postUpdate = await Post.update(
             {
-                like: like + 1,
+                like: post.like + 1,
             }, {
                 where: {
-                    id: data.id_post
+                    id: req.body.id_post
                 }
             })
 
+        console.log(postUpdate)
+ 
         if (postUpdate[0] === 1) {
             return res.json({
                 status: "success",
