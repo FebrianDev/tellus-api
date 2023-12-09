@@ -9,7 +9,7 @@ const v = new Validator()
 
 router.post('/bookmark', auth, async (req, res) => {
     const schema = {
-        id_user: 'number|empty:false',
+        id_user: 'string|empty:false',
         id_post: 'number|empty:false'
     }
 
