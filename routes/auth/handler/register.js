@@ -51,13 +51,11 @@ router.post('/register', async (req, res) => {
     const data = {
         password: password,
         email: req.body.email,
-        active: false,
         token: token
     }
 
     const createUser = await User.create(data)
 
-    await sendEmail(req.body.email)
 
     return res.status(201).json({
         code: 201,

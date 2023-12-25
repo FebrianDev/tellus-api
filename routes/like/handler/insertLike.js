@@ -72,8 +72,6 @@ router.post('/like', auth, async (req, res) => {
                     id: req.body.id_post
                 }
             })
-
-        console.log(postUpdate)
  
         if (postUpdate[0] === 1) {
             return res.json({

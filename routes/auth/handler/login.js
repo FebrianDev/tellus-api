@@ -49,14 +49,6 @@ router.post('/login', async (req, res) => {
         })
     }
 
-    if (user.active === 0 || user.active === false) {
-        return res.status(400).json({
-            code: 400,
-            status: 'error',
-            message: 'Your account has been not activated!'
-        })
-    }
-
     // Create token
     const token = jwt.sign(
         {email: req.body.email}, ACCESS_TOKEN,

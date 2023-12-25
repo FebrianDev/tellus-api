@@ -18,8 +18,8 @@ module.exports = {
       token: {
         type: Sequelize.STRING
       },
-      active:{
-        type:Sequelize.BOOLEAN
+      fcm_token: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
