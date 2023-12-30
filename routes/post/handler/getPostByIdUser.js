@@ -13,7 +13,8 @@ router.get('/post/user/:id_user', auth, async (req, res) => {
         include:[Like, Bookmark],
         where: {
             id_user: idUser
-        }
+        },
+        order:[['id', 'DESC']]
     })
     res.json({
         status: 'success',

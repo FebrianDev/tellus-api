@@ -9,23 +9,6 @@ const v = new Validator()
 
 //Insert Tweet
 router.post('/comment', auth, async (req, res) => {
-    // const schema = {
-    //     id_user: 'number|empty:false',
-    //     id_post:'number|empty:false',
-    //     message: 'string|empty:false',
-    //     root:'boolean|empty:true',
-    //     id_reply:'number|empty:true',
-    //     token:"string|empty:false"
-    // }
-    //
-    // const validate = v.validate(req.body, schema)
-    //
-    // if (validate.length) {
-    //     return res.status(400).json({
-    //         status: 'error',
-    //         message: validate
-    //     })
-    // }
 
     const data = {
         id_user: req.body.id_user,

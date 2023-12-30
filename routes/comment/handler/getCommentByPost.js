@@ -10,7 +10,8 @@ router.get('/comment/:id_post', auth, async (req, res) => {
         include:[ReplyComment],
         where: {
             id_post: idPost,
-        }
+        },
+        order:[['id', 'DESC']]
     })
     res.json({
         status: 'success',

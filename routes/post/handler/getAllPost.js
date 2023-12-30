@@ -10,7 +10,7 @@ router.get('/post', auth, async (req, res) => {
         where: {
             is_private:false
         },
-        order:[['id']]
+        order:[['id', 'DESC']]
     })
 
     //const query = Post.query("Select * from posts")

@@ -16,7 +16,6 @@ router.delete('/post/:id', auth, async (req, res) => {
         })
 
         if (comment) {
-
             const replyComment = await ReplyComment.destroy({
                 where: {id_post: idPost}
             })
