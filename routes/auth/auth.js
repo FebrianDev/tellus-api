@@ -3,4 +3,5 @@ const verify = require('../auth/handler/verify')
 const login = require('../auth/handler/login')
 const sendReset = require('../auth/handler/sendResetPassword')
 const resetReset = require('../auth/handler/resetPassword')
-module.exports = {register, verify, login, sendReset, resetReset}
+const updateToken = require("../auth/handler/updateToken")
+module.exports = {register, verify, login, sendReset, resetReset, updateToken}
