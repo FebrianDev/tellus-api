@@ -6,7 +6,15 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 //require module file
-const {register, verify, login, sendReset, resetReset, updateToken} = require('./routes/auth/auth')
+const {
+    register,
+    verify,
+    login,
+    sendReset,
+    resetReset,
+    updateToken,
+    getApiToken
+} = require('./routes/auth/auth')
 const {
     getAllPost,
     getPostById,
@@ -42,8 +50,8 @@ app.use(cors({
 
 app.use(cookieParser())
 
-app.use('/api', register, verify, login, sendReset, resetReset, updateToken,
-    getAllPost, getPostById, getPostByIdUser, getTrendingPost, getPostByTag, insertPost, updatePost, updatePrivatePost, deletePost,
+app.use('/api', register, verify, login, sendReset, resetReset, updateToken, getApiToken,
+getAllPost, getPostById, getPostByIdUser, getTrendingPost, getPostByTag, insertPost, updatePost, updatePrivatePost, deletePost,
     getCommentByPost, getReplyComment, insertComment, insertReplyComment, deleteComment, deleteReplyComment,
     getAllBookmark, insertBookmark, getBookmarkById,
     getLikeById, insertLike
