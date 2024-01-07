@@ -1,2 +1,2 @@
-const insertLike = require('../Like/handler/insertLike')
+const insertLike = require('../like/handler/insertLike')
 module.exports = {insertLike}
