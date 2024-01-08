@@ -5,6 +5,12 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
+require('dotenv').config()
+
+const {
+    PORT
+} = process.env
+
 //require module file
 const {
     register,
@@ -58,4 +64,4 @@ app.use('/api', register, verify, login, sendReset, resetReset, updateToken, get
 )
 
 module.exports = app
-app.listen(3030)
+app.listen(PORT)
