@@ -14,7 +14,7 @@ router.post('/post',  auth, async (req, res) => {
         id_user: 'string|empty:false',
         tag:'string|empty:false',
         is_private: 'boolean|empty:false',
-        token: 'string|empty:false'
+        token: 'string|empty:true'
     }
 
     const validate = v.validate(req.body, schema)
